@@ -1,11 +1,9 @@
-package daniel.lop.io.marvelappstarter.ui.Details
+package daniel.lop.io.marvelappstarter.ui.details
 
 import android.os.Bundle
-import android.telecom.Call
 import android.view.*
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -14,11 +12,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import daniel.lop.io.marvelappstarter.R
 import daniel.lop.io.marvelappstarter.data.model.character.CharacterModel
 import daniel.lop.io.marvelappstarter.databinding.FragmentDetailsCharacterBinding
-import daniel.lop.io.marvelappstarter.databinding.FragmentListCharacterBinding
-import daniel.lop.io.marvelappstarter.ui.adapters.CharacterAdapter
 import daniel.lop.io.marvelappstarter.ui.adapters.ComicAdapter
 import daniel.lop.io.marvelappstarter.ui.base.BaseFragment
-import daniel.lop.io.marvelappstarter.ui.list.ListCharacterFragmentDirections
 import daniel.lop.io.marvelappstarter.ui.state.ResourceState
 import daniel.lop.io.marvelappstarter.util.hide
 import daniel.lop.io.marvelappstarter.util.limitDescription
@@ -81,7 +76,7 @@ class DetailsCharacterFragment :
     private fun collectObserver() = lifecycleScope.launch {
         viewModel.details.collect { result ->
             when (result) {
-                is ResourceState.Sucess -> {
+                is ResourceState.Success -> {
                     binding.progressBarDetail.hide()
                     result.data?.let { values ->
                         if (values.data.result.count() > 0) {
@@ -124,7 +119,7 @@ class DetailsCharacterFragment :
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.favorite -> {
-                //viewModel.insert(characterModel)
+                viewModel.insert(characterModel)
                 toast(getString(R.string.saved_successfully))
             }
         }

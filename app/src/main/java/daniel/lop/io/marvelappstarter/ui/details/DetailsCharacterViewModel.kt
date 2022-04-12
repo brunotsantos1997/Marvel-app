@@ -1,7 +1,8 @@
-package daniel.lop.io.marvelappstarter.ui.Details
+package daniel.lop.io.marvelappstarter.ui.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import daniel.lop.io.marvelappstarter.data.model.character.CharacterModel
 import daniel.lop.io.marvelappstarter.data.model.comic.ComicModelResponse
 import daniel.lop.io.marvelappstarter.repository.MarvelRepository
 import daniel.lop.io.marvelappstarter.ui.state.ResourceState
@@ -41,9 +42,13 @@ class DetailsCharacterViewModel @Inject constructor(
     private fun handleResponse(response: Response<ComicModelResponse>): ResourceState<ComicModelResponse> {
         if (response.isSuccessful) {
             response.body()?.let { values ->
-                return ResourceState.Sucess(values)
+                return ResourceState.Success(values)
             }
         }
         return ResourceState.Error(response.message())
+    }
+
+    fun insert(characterModel: CharacterModel) = viewModelScope.launch {
+        repository.insert(characterModel)
     }
 }

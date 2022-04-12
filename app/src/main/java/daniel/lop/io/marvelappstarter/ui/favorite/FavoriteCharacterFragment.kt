@@ -1,4 +1,4 @@
-package daniel.lop.io.marvelappstarter.ui.Favorite
+package daniel.lop.io.marvelappstarter.ui.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

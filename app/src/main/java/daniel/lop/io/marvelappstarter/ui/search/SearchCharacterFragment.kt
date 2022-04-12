@@ -13,11 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import daniel.lop.io.marvelappstarter.R
-import daniel.lop.io.marvelappstarter.databinding.FragmentListCharacterBinding
 import daniel.lop.io.marvelappstarter.databinding.FragmentSearchCharacterBinding
 import daniel.lop.io.marvelappstarter.ui.adapters.CharacterAdapter
 import daniel.lop.io.marvelappstarter.ui.base.BaseFragment
-import daniel.lop.io.marvelappstarter.ui.list.ListCharacterFragmentDirections
 import daniel.lop.io.marvelappstarter.ui.state.ResourceState
 import daniel.lop.io.marvelappstarter.util.Constants.DEFAULT_QUERY
 import daniel.lop.io.marvelappstarter.util.Constants.LAST_SEARCH_QUERY
@@ -47,7 +45,7 @@ class SearchCharacterFragment :
     private fun collectObserver() = lifecycleScope.launch {
         viewModel.searchCharacter.collect{ result ->
             when(result){
-                is ResourceState.Sucess->{
+                is ResourceState.Success->{
                     binding.progressbarSearch.hide()
                     result.data?.let { values ->
                         characterAdapter.characters = values.data.results.toList()

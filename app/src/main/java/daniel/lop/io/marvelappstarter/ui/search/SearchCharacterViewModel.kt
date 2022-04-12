@@ -38,7 +38,7 @@ class SearchCharacterViewModel @Inject constructor(
     private fun handleResponse(response: Response<CharacterModelResponse>): ResourceState<CharacterModelResponse> {
         if(response.isSuccessful){
             response.body()?.let { values ->
-                return ResourceState.Sucess(values)
+                return ResourceState.Success(values)
             }
         }
         return ResourceState.Error(response.message())

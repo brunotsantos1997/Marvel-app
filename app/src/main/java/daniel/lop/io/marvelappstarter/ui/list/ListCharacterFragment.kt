@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import daniel.lop.io.marvelappstarter.R
-import daniel.lop.io.marvelappstarter.data.model.character.CharacterModel
 import daniel.lop.io.marvelappstarter.databinding.FragmentListCharacterBinding
 import daniel.lop.io.marvelappstarter.ui.adapters.CharacterAdapter
 import daniel.lop.io.marvelappstarter.ui.base.BaseFragment
@@ -39,7 +37,7 @@ class ListCharacterFragment : BaseFragment<FragmentListCharacterBinding, ListCha
     private fun collectObserver() = lifecycleScope.launch {
         viewModel.list.collect{ resource ->
             when(resource){
-                is ResourceState.Sucess->{
+                is ResourceState.Success->{
                     binding.progressCircular.hide()
                     resource.data?.let { values ->
                         characterAdapter.characters = values.data.results.toList()

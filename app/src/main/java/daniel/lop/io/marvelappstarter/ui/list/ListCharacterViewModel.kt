@@ -3,7 +3,6 @@ package daniel.lop.io.marvelappstarter.ui.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import daniel.lop.io.marvelappstarter.data.model.character.CharacterModel
 import daniel.lop.io.marvelappstarter.data.model.character.CharacterModelResponse
 import daniel.lop.io.marvelappstarter.repository.MarvelRepository
 import daniel.lop.io.marvelappstarter.ui.state.ResourceState
@@ -12,7 +11,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
-import java.security.KeyStore
 import javax.inject.Inject
 
 @HiltViewModel
@@ -46,7 +44,7 @@ class ListCharacterViewModel @Inject constructor(
     private fun handleResponse(response: Response<CharacterModelResponse>): ResourceState<CharacterModelResponse> {
         if(response.isSuccessful){
             response.body()?.let { values ->
-                return ResourceState.Sucess(values)
+                return ResourceState.Success(values)
             }
         }
         return ResourceState.Error(response.message())
