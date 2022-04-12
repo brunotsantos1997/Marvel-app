@@ -107,7 +107,7 @@ class DetailsCharacterFragment :
     private fun setupRecycleView() = with(binding) {
         rvComics.apply {
             adapter = comicAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(context)
         }
     }
 

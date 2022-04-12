@@ -43,26 +43,26 @@ class SearchCharacterFragment :
     }
 
     private fun collectObserver() = lifecycleScope.launch {
-        viewModel.searchCharacter.collect{ result ->
-            when(result){
-                is ResourceState.Success->{
+        viewModel.searchCharacter.collect { result ->
+            when (result) {
+                is ResourceState.Success -> {
                     binding.progressbarSearch.hide()
                     result.data?.let { values ->
                         characterAdapter.characters = values.data.results.toList()
                     }
                 }
-                is ResourceState.Error->{
+                is ResourceState.Error -> {
                     binding.progressbarSearch.hide()
                     result.message?.let { message ->
                         toast(getString(R.string.an_error_occurred))
                         Timber.tag("SearchCharacterFragment").e("Error -> $message")
                     }
                 }
-                is ResourceState.Loading->{
+                is ResourceState.Loading -> {
                     binding.progressbarSearch.show()
 
                 }
-                else->{
+                else -> {
                 }
             }
 
@@ -83,7 +83,7 @@ class SearchCharacterFragment :
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 updateCharacterList()
                 true
-            }else{
+            } else {
                 false
             }
         }
