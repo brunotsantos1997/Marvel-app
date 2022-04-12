@@ -36,7 +36,7 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.CharacterViewHold
         set(value) = differ.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        CharacterViewHolder(
+        return CharacterViewHolder(
             ItemCharacterBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
